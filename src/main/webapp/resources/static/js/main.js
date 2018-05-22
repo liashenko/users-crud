@@ -5,7 +5,10 @@ function report() {
         success: function (result) {
             var tblData = "";
             $.each(result, function () {
-                tblData += "<tr><td>" + this.name + "</td>" +
+                tblData += "<tr><td>" + this.firstName + "</td>" +
+                    "<td>" + this.lastName + "</td>" +
+                    "<td>" + convertDate(this.birthday) + "</td>" +
+                    "<td>" + this.gender + "</td>" +
                     "<td>" +
                     "<button onclick='fetchRecord(this);' data-id=" + this.id + "' class='btn btn-sm btn-info' data-toggle='modal' data-target='#updateModal'>Update</button>" +
                     "<button onclick='deleteUser(this);' data-id=" + this.id + "' class='btn btn-sm btn-danger'>Delete</button>" +
@@ -19,13 +22,31 @@ function report() {
     });
 }
 
+function convertDate(dt) {
+    if (dt === null)
+        return null;
+    var yyyy = dt[0];
+    var mm = dt[1] + 1;
+    if (mm < 9) {
+        mm = '0' + mm;
+    }
+    var dd = dt[2];
+    if (dd < 9) {
+        dd = '0' + dd;
+    }
+    return yyyy + '-' + mm + '-' + dd;
+}
+
 function addUser() {
-    var uname = $("#uname").val();
+    var firstname = $("#firstname").val();
+    var lastname = $("#lastname").val();
+    var birthday = $("#birthday").val();
+    var gender = $('select[name=gender]').val();
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "/users",
-        data: JSON.stringify({name: uname}),
+        data: JSON.stringify({firstName: firstname, lastName: lastname, birthday: birthday, gender: gender}),
         success: function (data) {
             alert("User has been added");
             location.reload(true);
@@ -39,13 +60,15 @@ function addUser() {
 // function for updating new information into database
 function updateNewRecord() {
     var id = parseInt($('#uid').val(), 10);
-    var uname = $("#uname_edit").val();
-    var data = {name: uname};
+    var firstname = $("#firstname_edit").val();
+    var lastname = $("#lastname_edit").val();
+    var birthday = $("#birthday_edit").val();
+    var gender = $("#gender_edit").val();
     $.ajax({
         type: "PUT",
         contentType: "application/json",
         url: "/users/" + id,
-        data: JSON.stringify(data),
+        data: JSON.stringify({firstName: firstname, lastName: lastname, birthday: birthday, gender: gender}),
         success: function (result) {
             alert("User has been updated");
             location.reload(true);
@@ -76,7 +99,13 @@ function deleteUser(that) {
 // function for fecthing old information into the form
 function fetchRecord(that) {
     var id = $(that).data("id");
-    var uname = $(that).parent().prev().text();
+    var firstname = $(that).parent().prev().prev().prev().prev().text();
+    var lastname = $(that).parent().prev().prev().prev().text();
+    var birthday = $(that).parent().prev().prev().text();
+    var gender = $(that).parent().prev().text() === "FEMALE" ? "1" : "0";
     $("input#uid").val(id);
-    $("input#uname_edit").val(uname);
+    $("input#firstname_edit").val(firstname);
+    $("input#lastname_edit").val(lastname);
+    $("input#birthday_edit").val(birthday);
+    $("select#gender_edit").val(gender);
 }

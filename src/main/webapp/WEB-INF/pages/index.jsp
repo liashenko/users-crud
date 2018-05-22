@@ -14,7 +14,10 @@
     <table class="table table-bordered">
         <thead>
         <tr class="bg-info">
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthday</th>
+            <th>Gender</th>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -33,7 +36,18 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="uname" id="uname" class="form-control input-sm">
+                                <label for="firstname">First Name</label>
+                                <input type="text" name="firstname" id="firstname" class="form-control input-sm">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" name="lastname" id="lastname" class="form-control input-sm">
+                                <label for="birthday">Birthday</label>
+                                <input type="date" name="birthday" id="birthday" class="form-control input-sm">
+                                <br/>
+                                <label for="gender">Gender</label>
+                                <select name="gender" id="gender">
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -57,7 +71,21 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <input type="hidden" name="uid" id="uid" class="form-control input-sm">
-                                <input type="text" name="uname_edit" id="uname_edit" class="form-control input-sm">
+                                <label for="firstname_edit">Last Name</label>
+                                <input type="text" name="firstname_edit" id="firstname_edit"
+                                       class="form-control input-sm">
+                                <label for="lastname_edit">Last Name</label>
+                                <input type="text" name="lastname_edit" id="lastname_edit"
+                                       class="form-control input-sm">
+                                <label for="birthday_edit">Birthday</label>
+                                <input type="date" name="birthday_edit" id="birthday_edit"
+                                       class="form-control input-sm">
+                                <br/>
+                                <label for="gender_edit">Gender</label>
+                                <select name="gender_edit" id="gender_edit">
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
                             </div>
                         </div>
                     </div>

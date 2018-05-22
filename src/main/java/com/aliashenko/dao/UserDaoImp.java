@@ -48,7 +48,10 @@ public class UserDaoImp implements UserDao {
     public void update(long id, User user) {
         Session session = sessionFactory.getCurrentSession();
         User userToUpdate = session.byId(User.class).load(id);
-        userToUpdate.setName(user.getName());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setBirthday(user.getBirthday());
+        userToUpdate.setGender(user.getGender());
         session.flush();
     }
 
