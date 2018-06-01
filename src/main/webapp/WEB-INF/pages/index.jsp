@@ -71,7 +71,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <input type="hidden" name="uid" id="uid" class="form-control input-sm">
-                                <label for="firstname_edit">Last Name</label>
+                                <label for="firstname_edit">First Name</label>
                                 <input type="text" name="firstname_edit" id="firstname_edit"
                                        class="form-control input-sm">
                                 <label for="lastname_edit">Last Name</label>
