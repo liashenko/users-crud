@@ -5,13 +5,13 @@ function report() {
         success: function (result) {
             var tblData = "";
             $.each(result, function () {
-                tblData += "<tr><td>" + this.firstName + "</td>" +
-                    "<td>" + this.lastName + "</td>" +
-                    "<td>" + convertDate(this.birthday) + "</td>" +
-                    "<td>" + this.gender + "</td>" +
+                tblData += "<tr><td class='first-name'>" + this.firstName + "</td>" +
+                    "<td class='last-name'>" + this.lastName + "</td>" +
+                    "<td class='birthday'>" + convertDate(this.birthday) + "</td>" +
+                    "<td class='gender'>" + this.gender + "</td>" +
                     "<td>" +
-                    "<button onclick='fetchRecord(this);' data-id=" + this.id + "' class='btn btn-sm btn-info' data-toggle='modal' data-target='#updateModal'>Update</button>" +
-                    "<button onclick='deleteUser(this);' data-id=" + this.id + "' class='btn btn-sm btn-danger'>Delete</button>" +
+                    "<button onclick='fetchRecord(this);' data-id=" + this.id + " class='btn btn-sm btn-info' data-toggle='modal' data-target='#updateModal'>Update</button>" +
+                    "<button onclick='deleteUser(this);' data-id=" + this.id + " class='btn btn-sm btn-danger'>Delete</button>" +
                     "</td></tr>";
             });
             $("#tbody").html(tblData);
@@ -97,15 +97,18 @@ function deleteUser(that) {
 }
 
 // function for fecthing old information into the form
-function fetchRecord(that) {
-    var id = $(that).data("id");
-    var firstname = $(that).parent().prev().prev().prev().prev().text();
-    var lastname = $(that).parent().prev().prev().prev().text();
-    var birthday = $(that).parent().prev().prev().text();
-    var gender = $(that).parent().prev().text() === "FEMALE" ? "1" : "0";
+function fetchRecord(buttonRef) {
+    const FEMALE = "FEMALE";
+    var button = $(buttonRef);
+    var tableRow = button.parent().parent();
+    var id = button.data("id");
+    var firstName = tableRow.find(".first-name")[0].innerText;
+    var lastName = tableRow.find(".last-name")[0].innerText;
+    var birthday = tableRow.find(".birthday")[0].innerText;
+    var gender = tableRow.find(".gender")[0].innerText === FEMALE ? "1" : "0";
     $("input#uid").val(id);
-    $("input#firstname_edit").val(firstname);
-    $("input#lastname_edit").val(lastname);
+    $("input#firstname_edit").val(firstName);
+    $("input#lastname_edit").val(lastName);
     $("input#birthday_edit").val(birthday);
     $("select#gender_edit").val(gender);
 }
