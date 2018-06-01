@@ -96,12 +96,12 @@ function deleteUser(that) {
     });
 }
 
+const FEMALE = "FEMALE";
 // function for fecthing old information into the form
 function fetchRecord(buttonRef) {
-    const FEMALE = "FEMALE";
     var button = $(buttonRef);
-    var tableRow = button.parent().parent();
     var id = button.data("id");
+    var tableRow = button.parent().parent();
     var firstName = tableRow.find(".first-name")[0].innerText;
     var lastName = tableRow.find(".last-name")[0].innerText;
     var birthday = tableRow.find(".birthday")[0].innerText;
