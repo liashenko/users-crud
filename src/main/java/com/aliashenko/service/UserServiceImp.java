@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class UserServiceImp implements UserService {
 
     private final UserDao UserDao;
@@ -19,7 +19,6 @@ public class UserServiceImp implements UserService {
         this.UserDao = UserDao;
     }
 
-    @Transactional
     @Override
     public long save(User user) {
         return UserDao.save(user);
@@ -35,13 +34,11 @@ public class UserServiceImp implements UserService {
         return UserDao.list();
     }
 
-    @Transactional
     @Override
     public void update(long id, User user) {
         UserDao.update(id, user);
     }
 
-    @Transactional
     @Override
     public void delete(long id) {
         UserDao.delete(id);
