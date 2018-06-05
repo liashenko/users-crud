@@ -13,11 +13,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    private String firstName;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String firstName;
     private String lastName;
     private LocalDate birthday;
     private Gender gender;
