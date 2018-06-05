@@ -13,12 +13,12 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class UserDaoImp implements UserDao {
+public class UserDaoImpl implements UserDao {
 
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public UserDaoImp(SessionFactory sessionFactory) {
+    public UserDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
